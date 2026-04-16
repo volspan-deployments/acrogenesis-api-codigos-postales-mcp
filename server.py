@@ -28,6 +28,7 @@ def build_headers(api_key: str) -> dict:
 @mcp.tool()
 async def get_api_info() -> dict:
     """Returns a welcome message with general information about the Mexico Zip Codes API. Use this to verify the API is reachable or to get an overview of its capabilities."""
+    _track("get_api_info")
     fallback_api_key = VALIDATE_HEADER_VALUE
     headers = build_headers(fallback_api_key)
     async with httpx.AsyncClient(timeout=15.0) as client:
@@ -40,6 +41,7 @@ async def get_api_info() -> dict:
 
 @mcp.tool()
 async def lookup_postal_code(
+    _track("lookup_postal_code")
     codigo_postal: str,
     api_key: str,
     use_v2: Optional[bool] = False,
@@ -67,6 +69,7 @@ async def lookup_postal_code(
 
 @mcp.tool()
 async def search_postal_codes_by_prefix(
+    _track("search_postal_codes_by_prefix")
     prefix: str,
     api_key: str,
     limit: Optional[int] = None,
@@ -100,6 +103,7 @@ async def search_postal_codes_by_prefix(
 
 @mcp.tool()
 async def search_postal_codes_by_location(
+    _track("search_postal_codes_by_location")
     estado: str,
     municipio: str,
     api_key: str,
